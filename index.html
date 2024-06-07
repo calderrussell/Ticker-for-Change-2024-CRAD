@@ -19,22 +19,22 @@ body {font-size:16px;}
 <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-64"><b>Company<br>Name</b></h3>
+    <h3 class="w3-padding-64"><b>Find It!<br>CRLS</b></h3>
   </div>
   <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Showcase</a> 
-    <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Services</a> 
+    <a href="#Roomnumbers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Find a Room</a> 
+    <a href="#Health" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Health</a> 
+    <a href="#jobs" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Job Help</a> 
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Designers</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Packages</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Additional resources</a>
   </div>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Company Name</span>
+  <span>Find It! CRLS</span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -45,24 +45,14 @@ body {font-size:16px;}
 
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo"><b>Interior Design</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>Showcase.</b></h1>
+    <h1 class="w3-jumbo"><b>Find It! CRLS</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Help for Students</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
   <!-- Photo grid (modal) -->
   <div class="w3-row-padding">
-    <div class="w3-half">
-      <img src="/w3images/kitchenconcrete.jpg" style="width:100%" onclick="onClick(this)" alt="Concrete meets bricks">
-      <img src="/w3images/livingroom.jpg" style="width:100%" onclick="onClick(this)" alt="Light, white and tight scandinavian design">
-      <img src="/w3images/diningroom.jpg" style="width:100%" onclick="onClick(this)" alt="White walls with designer chairs">
-    </div>
-
-    <div class="w3-half">
-      <img src="/w3images/atrium.jpg" style="width:100%" onclick="onClick(this)" alt="Windows for the atrium">
-      <img src="/w3images/bedroom.jpg" style="width:100%" onclick="onClick(this)" alt="Bedroom and office in one space">
-      <img src="/w3images/livingroom2.jpg" style="width:100%" onclick="onClick(this)" alt="Scandinavian design">
-    </div>
+      <img src="CRLS_Zone_Map.jpg" style="width:100%" onclick="onClick(this)" alt="CRLS Zone Map">
   </div>
 
   <!-- Modal for full size images on click-->
@@ -75,126 +65,166 @@ body {font-size:16px;}
   </div>
 
   <!-- Services -->
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Services.</b></h1>
+  <div class="w3-container" id="Roomnumbers" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Find a Room</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>We are a interior design service that focus on what's best for your home and what's best for you!</p>
-    <p>Some text about our services - what we do and what we offer. We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <label id="schoolRoomInfo">What room number do you want to find?</label>
+    <br>
+    <input type="text" id="roomNumberInput">
+    <button onclick="updateRoomInfo()">
+      Enter
+    </button>
+
+    <script>
+      function updateRoomInfo() {
+        let userInput = document.getElementById("roomNumberInput").value;
+        if (userInput.length>4)
+        {
+          alert("Please enter a valid room number! Room numbers have four digits");
+        }
+        else
+        {      let floorLevel = userInput.substring(0,1);
+        let zone = userInput.substring(1,2);
+        let zoneColor;
+        if (zone == "1")
+        {
+            zoneColor = "red"
+        }
+        else if (zone == "2")
+        {
+            zoneColor = "green"
+        }
+        else if (zone == "3")
+            {
+                zoneColor = "dark blue";
+            }
+
+        else if (zone == "4")
+            {
+                zoneColor = "light blue";
+            }
+        else if (zone == "5")
+        {
+            zoneColor = "brown";
+        }
+        else if (zone == "6")
+        {
+            zoneColor = "orange";
+        }
+        let roomNumber = userInput.substring(2, 4)
+        alert("You are on floor " +floorLevel+ ", you are in the " + zoneColor + " zone " + "and the room number is " + roomNumber + ". ");
+        
+      }
+      }
+    </script>
+    <p>Note: if your room is on the 5th floor, you will need to find one of the 2 staircases that reach the 5th floor. There is one in zone 1 (red) near the entrance and one in zone 4 (light blue) near the media cafe.
     </p>
   </div>
 
   <!-- Designers -->
-  <div class="w3-container" id="designers" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Designers.</b></h1>
+  <div class="w3-container" id="Health" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Health</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>The best team in the world.</p>
-    <p>We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <p><b>Teen Health Center</b></p>
+    <p>What is the Cambridge Teen Health Center?
+      The Cambridge Teen Health Center, in partnership with Cambridge Health Alliance (CHA), is a school-based health clinic located in the CRLS health office. The center is staffed by a full time Nurse Practitioner and mental health specialists – psychiatrists, psychologists and social workers. We are essentially a primary care clinic that is housed in the high school. Our goal is to reduce the barriers to accessing primary care, sexual health, and mental health care by offering these services in a convenient location. When school is in-person, students do not have to miss school (and parents/guardians do not have to miss work) in order to address their physical and mental health needs.<p></p>
+
+      <p><b>What services are available at the THC?</b></p>
+
+      <p>Physicals
+      Immunizations, including flu vaccine
+      Sexual and reproductive health services such as counseling, birth control, STI testing and treatment, pregnancy tests
+      Mental health counseling
+      Psychiatry</p>
+        
+      <p><b>Who can access these services?</b></p>
+      <p>Anyone between the ages of 12-24 years old. Free care is available for CRLS and Extension students who are uninsured based on support from the Massachusetts Department of Public Health. Sexual and reproductive health education and care is FREE and CONFIDENTIAL (parent/guardian consent is NOT required) for all students.</p>
+
+      <p><b>Appointment Information</b></p>
+      <p>Access is easy. Students can be seen during the school day, avoiding the need to set up an appointment offsite at their medical provider's office. We hope you will encourage your student to use this convenient and excellent health care service.</p>
+
+      <p><b>For PRIMARY CARE and SEXUAL HEALTH appointments</b>:<p>
+      <p>Call 617.665.1548 to schedule an appointment with the nurse practitioner. Or students can walk in to schedule an appointment.</p>
+
+      <p><b>For MENTAL HEALTH services/counseling</b>:</p>
+      <p>Students, parents/guardians, teachers, any concerned adult can fill out the referral form for counseling services (click here to start the referral process). We do NOT provide crisis mental health services. Once the referral is placed, the mental health referral coordinator will reach out to the parent/guardian to schedule an intake appointment. The intake appointment is the initial appointment when the mental health provider meets with the student and parent/guardian. The subsequent appointments are only with the student.</p>
     </p>
-    <p><b>Our designers are thoughtfully chosen</b>:</p>
+    
+  </div>
+
+
+
+  <!-- Job help / Pricing Tables -->
+  <div class="w3-container" id="jobs" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Job Help</b></h1>
+    <p><b>Student Job Center</b></p>
+    <p> You can get help finding a job with the resource center in the second floor of the main building in the red. They will even help you write your resume and give you a work permit. </p>
+    <p><b>RSTA FIRST Work</b></p>
+    <p> You can even get a job inside the school and make money around the clock.</p>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    
+  </div>
+
+
+
+  <!-- Designers -->
+  <div class="w3-container" id="designers" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Designers</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>
+    </p>
   </div>
 
   <!-- The Team -->
   <div class="w3-row-padding w3-grayscale">
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
-        <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+        <img src="Andrew.jpg" alt="Andrew" style="width:100%">
         <div class="w3-container">
-          <h3>John Doe</h3>
-          <p class="w3-opacity">CEO & Founder</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h3>Andy Driscoll</h3>
+          <p class="w3-opacity">Innovator</p>
+          <p>Works 7-7 in a dead-end IT job.</p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
-        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+        <img src="Calder.jpg" alt="Jane" style="width:100%">
         <div class="w3-container">
-          <h3>Jane Doe</h3>
-          <p class="w3-opacity">Designer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h3>Calder Russell</h3>
+          <p class="w3-opacity">Visionary</p>
+          <p>Murdered as a child - has not recovered from it yet. Pays two a year on a theripist because that is all he can afford. </p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
-        <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
+        <img src="Min-Jae.jpg" alt="Mike" style="width:100%">
         <div class="w3-container">
-          <h3>Mike Ross</h3>
-          <p class="w3-opacity">Architect</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <h3>Min-Jae Kuo</h3>
+          <p class="w3-opacity">Only guy that actually does work</p>
+          <p>When I was a child I was cursed not to get a straight photo - depressed to this day. </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Packages / Pricing Tables -->
-  <div class="w3-container" id="packages" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Packages.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
-  </div>
-
-  <div class="w3-row-padding">
-    <div class="w3-half w3-margin-bottom">
-      <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-        <li class="w3-padding-16">Floorplanning</li>
-        <li class="w3-padding-16">10 hours support</li>
-        <li class="w3-padding-16">Photography</li>
-        <li class="w3-padding-16">20% furniture discount</li>
-        <li class="w3-padding-16">Good deals</li>
-        <li class="w3-padding-16">
-          <h2>$ 199</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w3-half">
-      <ul class="w3-ul w3-light-grey w3-center">
-        <li class="w3-red w3-xlarge w3-padding-32">Pro</li>
-        <li class="w3-padding-16">Floorplanning</li>
-        <li class="w3-padding-16">50 hours support</li>
-        <li class="w3-padding-16">Photography</li>
-        <li class="w3-padding-16">50% furniture discount</li>
-        <li class="w3-padding-16">GREAT deals</li>
-        <li class="w3-padding-16">
-          <h2>$ 249</h2>
-          <span class="w3-opacity">per room</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button class="w3-button w3-red w3-padding-large w3-hover-black">Sign Up</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-
+  
   <!-- Contact -->
   <div class="w3-container" id="contact" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Additional Resources</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Do you want us to style your home? Fill out the form and fill me in with the details :) We love meeting new people!</p>
-    <form action="/action_page.php" target="_blank">
-      <div class="w3-section">
-        <label>Name</label>
-        <input class="w3-input w3-border" type="text" name="Name" required>
-      </div>
-      <div class="w3-section">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="text" name="Email" required>
-      </div>
-      <div class="w3-section">
-        <label>Message</label>
-        <input class="w3-input w3-border" type="text" name="Message" required>
-      </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
+    <p><b>Falcon Fixers</b></p>
+    <p>There is a computer help center that is located on the 4th floor (red zone). You can go in person and have them help or you can have your teacher send a request and they will visit your classroom</p>
+    <p><b>Guidance Councellors</b></p>
+    <p>If you need help with understanding different aspects of your schedule, navigating a new school, or someone to talk to about issues the councellors are always there. They are located inside your Learning communities.</p>
+    <p><b>Library</b></p>
+    <p>The CRLS library has wonderful opportunities such as Chromebook charging, books, puzzles, and friendship! Stop by and say hi to the awesome librarians!</p>
+    <p><b>Physical Fitness</b></p>
+    <p>Our school is connected to the War memorial building (accessable through the back of the arts building). The War memorial has a gym and pool where you can work on improving yourself.</p>
+    
+    <p><b>Free Nutrition</b></p>
+    <p>Free berakfast and lunch is provided at CRLS. If you arrive after 8:00 there will be free food in the Main Cafeteria. Lunch wil be served in 2 different locaitons The Main Cafe and the Media Cafe. The Main Cafe is directly accesible from the front double doors, and the Media cafe is located on the first floor in zone 5 or the brown zone. Our school also has a food bank that provides food to those that need it.</p>
     </form>  
   </div>
 
@@ -202,7 +232,7 @@ body {font-size:16px;}
 </div>
 
 <!-- W3.CSS Container -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by raw brainpower</p></div>
 
 <script>
 // Script to open and close sidebar
@@ -223,6 +253,8 @@ function onClick(element) {
   var captionText = document.getElementById("caption");
   captionText.innerHTML = element.alt;
 }
+
+  
 </script>
 
 </body>
